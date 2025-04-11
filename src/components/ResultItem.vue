@@ -1,21 +1,43 @@
 <template>
-  <div class="result-item" :class="{ highlight }">
+  <div
+    class="result-item"
+    :class="{ highlight }"
+  >
     <span class="label">{{ label }}</span>
-    <span class="value" :class="{
-      'text-green-600': positive === true,
-      'text-red-600': positive === false,
-      'text-blue-700': highlight
-    }">{{ value }}</span>
-    <Tooltip v-if="tooltip" :title="tooltip" :formula="formula" :highlight="highlight">
-      <svg class="info-icon w-4 h-4" :class="{ 'text-blue-600': highlight }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+    <span
+      class="value"
+      :class="{
+        'text-green-600': positive === true,
+        'text-red-600': positive === false,
+        'text-blue-700': highlight
+      }"
+    >{{ value }}</span>
+    <InfoTooltip
+      v-if="tooltip"
+      :title="tooltip"
+      :formula="formula"
+      :highlight="highlight"
+    >
+      <svg
+        class="info-icon w-4 h-4"
+        :class="{ 'text-blue-600': highlight }"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
       </svg>
-    </Tooltip>
+    </InfoTooltip>
   </div>
 </template>
 
 <script setup>
-import Tooltip from './Tooltip.vue';
+import InfoTooltip from './InfoTooltip.vue';
 
 defineProps({
   label: String,

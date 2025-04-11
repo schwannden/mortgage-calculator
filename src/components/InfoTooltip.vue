@@ -1,9 +1,15 @@
 <template>
   <div class="tooltip">
-    <slot></slot>
-    <span class="tooltip-text" :class="{ 'highlight-tooltip': highlight }">
+    <slot />
+    <span
+      class="tooltip-text"
+      :class="{ 'highlight-tooltip': highlight }"
+    >
       <span class="font-medium">{{ title }}</span>
-      <div v-if="formula" class="mt-1 formula">{{ formula }}</div>
+      <div
+        v-if="formula"
+        class="mt-1 formula"
+      >{{ formula }}</div>
     </span>
   </div>
 </template>

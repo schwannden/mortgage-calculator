@@ -16,14 +16,35 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development Commands
 
 ```sh
+# Compile and Hot-Reload for Development
 npm run dev
-```
 
-### Compile and Minify for Production
-
-```sh
+# Compile and Minify for Production
 npm run build
+
+# Run ESLint
+npm run lint
+
+# Fix ESLint Issues
+npm run lint:fix
+
+# Type-check
+npm run type-check
+
+# Type-check with watch mode
+npm run type-check:watch
 ```
+
+### Git Hooks
+
+This project uses:
+- **Husky**: Manages Git hooks (automatically installed with `npm install`)
+- **lint-staged**: Runs linters on staged files
+
+Pre-commit hook will automatically:
+- Run ESLint on staged `.js`, `.ts`, and `.vue` files
+- Fix formatting issues when possible
+- Prevent commit if there are any errors

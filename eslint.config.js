@@ -1,23 +1,14 @@
-import pluginVue from 'eslint-plugin-vue'
-import globals from 'globals'
+import { defineConfig } from "eslint/config";
+import js from "@eslint/js";
+import globals from "globals";
+import tseslint from "typescript-eslint";
+import pluginVue from "eslint-plugin-vue";
 
-export default [
-  // add more generic rulesets here, such as:
-  // js.configs.recommended,
-  ...pluginVue.configs['flat/recommended'],
-  // ...pluginVue.configs['flat/vue2-recommended'], // Use this if you are using Vue.js 2.x.
-  {
-    rules: {
-      // override/add rules settings here, such as:
-      // 'vue/no-unused-vars': 'error'
-    },
-    languageOptions: {
-      sourceType: 'module',
-      globals: {
-        ...Object.fromEntries(
-          Object.entries(globals.browser).map(([key, value]) => [key.trim(), value])
-        )
-      }
-    }
-  }
-]
+
+export default defineConfig([
+  { files: ["**/*.{js,mjs,cjs,ts,vue}"], plugins: { js }, extends: ["js/recommended"] },
+  { files: ["**/*.{js,mjs,cjs,ts,vue}"], languageOptions: { globals: globals.browser } },
+  tseslint.configs.recommended,
+  pluginVue.configs["flat/essential"],
+  { files: ["**/*.vue"], languageOptions: { parserOptions: { parser: tseslint.parser } } },
+]);
